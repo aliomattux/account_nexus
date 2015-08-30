@@ -1,0 +1,12 @@
+<openerp>
+    <data>
+        <record id="view_account_position_form" model="ir.ui.view">
+            <field name="name">account.fiscal.position.form</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="arch" type="xml">
+                <form string="Fiscal Position">
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,45 @@
+<openerp>
+    <data>
+        <record id="view_account_nexus_tree" model="ir.ui.view">
+            <field name="name">Account Nexus Tree</field>
+            <field name="model">account.nexus</field>
+            <field name="arch" type="xml">
+                <tree string="Nexuses">
+		    <field name="name" />
+		</tree>
+	    </field>
+	</record>
+
+        <record id="view_account_position_form" model="ir.ui.view">
+            <field name="name">Account Nexus Form</field>
+            <field name="model">account.nexus</field>
+            <field name="arch" type="xml">
+                <form string="Fiscal Position">
+		    <group>
+			<field name="name" />
+		    </group>
+		    <group>
+			<field name="country_id" />
+			<field name="state_id" />
+		    </group>
+		    <group>
+			<field name="tax_id" />
+			<field name="tax_agency_id" />
+		    </group>
+		</form>
+	    </field>
+	</record>
+
+        <record id="action_account_nexus" model="ir.actions.act_window">
+            <field name="name">Nexuses</field>
+            <field name="res_model">account.nexus</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            action="action_account_nexus"
+            id="menu_action_account_nexus"
+            parent="account.next_id_27" sequence="50"/>
+    </data>
+</openerp>
