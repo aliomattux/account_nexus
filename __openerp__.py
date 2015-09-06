@@ -9,7 +9,7 @@
     """,
     'data': [
 	'views/nexus.xml',
-#	'views/fiscal_position.xml',
+	'views/fiscal_position.xml',
     ],
     'test': [
     ],

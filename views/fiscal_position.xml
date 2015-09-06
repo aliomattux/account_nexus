@@ -1,0 +1,14 @@
+<openerp>
+    <data>
+        <record id="view_account_position_nexus_form" model="ir.ui.view">
+            <field name="name">Fiscal Position Nexus Form</field>
+            <field name="model">account.fiscal.position</field>
+	    <field name="inherit_id" ref="account.view_account_position_form" />
+            <field name="arch" type="xml">
+		<field name="country_group_id" position="after">
+		    <field name="nexus_id" />
+		</field>
+            </field>
+        </record>
+    </data>
+</openerp>
