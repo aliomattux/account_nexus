@@ -16,8 +16,10 @@ class AccountFiscalPosition(osv.osv):
         if not taxes:
             return []
 
-        if not fposition:
-            return map(lambda x: x.id, taxes)
+	#This does not work well in the United States because we only charge tax
+	#If a specific rule matches our location
+ #       if not fposition:
+#            return map(lambda x: x.id, taxes)
 
 	if fposition.nexus_id and fposition.nexus_id.tax_id in taxes:
 	    return [fposition.nexus_id.tax_id.id]
@@ -27,7 +29,7 @@ class AccountFiscalPosition(osv.osv):
 
         for t in taxes:
             ok = False
-            for tax in fposition_id.tax_ids:
+            for tax in fposition.tax_ids:
                 if tax.tax_src_id.id == t.id:
                     if tax.tax_dest_id:
                         result.add(tax.tax_dest_id.id)
