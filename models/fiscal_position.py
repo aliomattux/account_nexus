@@ -21,7 +21,7 @@ class AccountFiscalPosition(osv.osv):
  #       if not fposition:
 #            return map(lambda x: x.id, taxes)
 
-	if fposition.nexus_id and fposition.nexus_id.tax_id in taxes:
+	if fposition and fposition.nexus_id and fposition.nexus_id.tax_id in taxes:
 	    return [fposition.nexus_id.tax_id.id]
 
 
@@ -29,13 +29,17 @@ class AccountFiscalPosition(osv.osv):
 
         for t in taxes:
             ok = False
-            for tax in fposition.tax_ids:
-                if tax.tax_src_id.id == t.id:
-                    if tax.tax_dest_id:
-                        result.add(tax.tax_dest_id.id)
-                    ok=True
-            if not ok:
-                result.add(t.id)
+	    if fposition:
+                for tax in fposition.tax_ids:
+                    if tax.tax_src_id.id == t.id:
+                        if tax.tax_dest_id:
+                            result.add(tax.tax_dest_id.id)
+                        ok=True
+	#This is really stupid and defeats the purpose of fiscal position
+	#If not ok? If no match is found apply the tax anyway? WTF
+#            if not ok:
+#		print 'Not OK'
+ #               result.add(t.id)
         return list(result)
 
 
@@ -50,7 +54,6 @@ class AccountFiscalPosition(osv.osv):
 
         # partner manually set fiscal position always win
         if partner.property_account_position:
-	    print 'Returning'
             return partner.property_account_position.id
         delivery = partner_obj.browse(cr, uid, delivery_id, context=context)
 
